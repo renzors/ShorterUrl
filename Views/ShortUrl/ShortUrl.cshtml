@@ -1,0 +1,10 @@
+﻿@{
+    Response.Write("<script>");
+    Response.Write("window.open('" + ViewBag.Link + "','_blank')");
+    Response.Write("</script>");    
+    string site = Request.Url.GetLeftPart(UriPartial.Authority);
+    Response.Write("<script>");
+    Response.Write("window.location = '" + site + "'");
+    Response.Write("</script>");
+}
+

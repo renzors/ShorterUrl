@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ExamMinEdu.Models.Url>
+
+@{
+    ViewBag.Title = "Inicio";
+    string site = Request.Url.GetLeftPart(UriPartial.Authority);
+}
+
+<p>
+    @Html.ActionLink("Nueva URL corta", "Crear")
+</p>
+
+<h2>URL Cortas</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlOrigen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlDestino)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NVisitas)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.RouteLink(item.Titulo, "Link", new { shortname=item.UrlDestino })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlOrigen)
+        </td>
+        <td>            
+            @Html.RouteLink(site+"/s/"+item.UrlDestino, "Link", new { shortname=item.UrlDestino })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NVisitas)
+        </td>
+    </tr>
+}
+
+</table>
